@@ -1,0 +1,27 @@
+{
+  "name": "pomodoro-clock",
+  "version": "1.0.0",
+  "description": "FCC Project - Pomodoro Clock",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "browser-sync start --server --files './' --browser 'Google Chrome'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codesurge-xyz/fcc-pomodoro-clock.git"
+  },
+  "author": "James Dooley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codesurge-xyz/fcc-pomodoro-clock/issues"
+  },
+  "homepage": "https://github.com/codesurge-xyz/fcc-pomodoro-clock#readme",
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.13",
+    "eslint": "^4.3.0"
+  }
+}
