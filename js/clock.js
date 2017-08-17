@@ -8,7 +8,7 @@ define("clock", function (require, exports) {
 
     var _timer = null;
 
-    var _pomodoroLength = 25;
+    var _sessionLength = 25;
     var _breakLength = 5;
 
     var _lapsedMinutes = 0;
@@ -52,9 +52,9 @@ define("clock", function (require, exports) {
         }
     }
 
-    function _setPomodoroLength(value) {
+    function _setSessionLength(value) {
         if (value > 0) {
-            _pomodoroLength = value;
+            _sessionLength = value;
         }
     }
 
@@ -88,7 +88,7 @@ define("clock", function (require, exports) {
 
     function _checkCompleted() {
         if (_mode == WORK) {
-            if (_lapsedMinutes >= _pomodoroLength) {
+            if (_lapsedMinutes >= _sessionLength) {
                 _chime();
                 _resetMode(BREAK);
             }
@@ -104,7 +104,7 @@ define("clock", function (require, exports) {
         if (_.isFunction(_renderCallback)) {
             var data = {};
             data.mode = _mode;
-            data.periodLength = _pomodoroLength;
+            data.periodLength = _sessionLength;
 
             if (_mode == 1) {
                 data.periodLength = _breakLength;
@@ -131,8 +131,8 @@ define("clock", function (require, exports) {
         _setChimeCallback(callback);
     };
 
-    exports.setPomodoroLength = function (value) {
-        _setPomodoroLength(value);
+    exports.setSessionLength = function (value) {
+        _setSessionLength(value);
     };
 
     exports.setBreakLength = function (value) {
