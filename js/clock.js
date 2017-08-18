@@ -14,8 +14,8 @@ define("clock", function (require, exports) {
     var _lapsedMinutes = 0;
     var _lapsedSeconds = 0;
 
-    var WORK = 0;
-    var BREAK = 1;
+    var _WORK = 0;
+    var _BREAK = 1;
     var _mode = 0; // 0 => work, 1 => break;
 
     function _stopTimer() {
@@ -25,7 +25,7 @@ define("clock", function (require, exports) {
     }
 
     function _startTimer() {
-        _timer = setTimeout(_timerCallback, 0);
+        _timer = setTimeout(_timerCallback, 1000);
     }
 
     function _timerCallback() {
@@ -72,7 +72,6 @@ define("clock", function (require, exports) {
     function _reset() {
         _stopTimer();
         _resetMode(0);
-        _render();
     }
 
     function _addSecond() {
@@ -87,7 +86,7 @@ define("clock", function (require, exports) {
     }
 
     function _checkCompleted() {
-        if (_mode == WORK) {
+        if (_mode == _WORK) {
             if (_lapsedMinutes >= _sessionLength) {
                 _chime();
                 _resetMode(BREAK);
@@ -146,4 +145,7 @@ define("clock", function (require, exports) {
     exports.reset = function () {
         _reset();
     };
+
+    exports.WORK = _WORK;
+    exports.BREAK = _BREAK;
 });
