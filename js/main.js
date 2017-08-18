@@ -29,6 +29,12 @@ define("app", function (require, exports) {
 
     var _running = false;
 
+    /**
+     * Adds a preceding zero to numbers below 10
+     * @private
+     * @param   {number} value Number to format
+     * @returns {string} Formatted number
+     */
     function _formatDigits(value) {
         if (value <= 9) {
             return "0" + value;
@@ -37,6 +43,12 @@ define("app", function (require, exports) {
         return String(value);
     }
 
+    /**
+     * Displays the clock details on the html page
+     * when called by the clock
+     * @private
+     * @param {object} data The data to display
+     */
     function _renderClock(data) {
         var mins = data.periodLength - data.lapsedMinutes;
 
@@ -60,11 +72,20 @@ define("app", function (require, exports) {
         }
     }
 
+    /**
+     * Plays the chime music when called by the clock
+     * @private
+     */
     function _chimeForClock() {
         var audio = new Audio("alarm.mp3");
         audio.play();
     }
 
+    /**
+     * Increases the number of minutes in a session, when
+     * called by clicking the appropriate button.
+     * @private
+     */
     function _addToSession() {
         if (_running) {
             return;
@@ -80,6 +101,11 @@ define("app", function (require, exports) {
         _clock.setSessionLength(_sessionLength);
     }
 
+    /**
+     * Reduces the number of minutes in a session, when
+     * called by clicking the appropriate button.
+     * @private
+     */
     function _subtractFromSession() {
         if (_running) {
             return;
@@ -95,6 +121,11 @@ define("app", function (require, exports) {
         _clock.setSessionLength(_sessionLength);
     }
 
+    /**
+     * Increases the number of minutes in a break, when
+     * called by clicking the appropriate button.
+     * @private
+     */
     function _addToBreak() {
         if (_running) {
             return;
@@ -110,6 +141,11 @@ define("app", function (require, exports) {
         _clock.setBreakLength(_breakLength);
     }
 
+    /**
+     * Reduces the number of minutes in a break, when
+     * called by clicking the appropriate button.
+     * @private
+     */
     function _subtractFromBreak() {
         if (_running) {
             return;
@@ -125,11 +161,19 @@ define("app", function (require, exports) {
         _clock.setBreakLength(_breakLength);
     }
 
+    /**
+     * Starts the clock running
+     * @private
+     */
     function _start() {
         _running = true;
         _clock.start();
     }
 
+    /**
+     * Stops the clock and resets it
+     * @private
+     */
     function _reset() {
         _timeLabel.text(_sessionLength + ":00 Mins.");
         _running = false;
@@ -166,6 +210,9 @@ define("app", function (require, exports) {
     };
 });
 
+/**
+ * Application start up
+ */
 requirejs(["app"], function (app) {
     "use strict";
     app.init();
