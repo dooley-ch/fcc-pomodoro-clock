@@ -31,7 +31,10 @@ define("clock", function (require, exports) {
     function _timerCallback() {
         _stopTimer();
         _addSecond();
-        _startTimer();
+
+        if (!_completed()) {
+            _startTimer();
+        }
     }
 
     function _resetMode(newMode) {
@@ -82,21 +85,28 @@ define("clock", function (require, exports) {
         }
 
         _render();
-        _checkCompleted();
     }
 
-    function _checkCompleted() {
+    function _completed() {
         if (_mode == _WORK) {
             if (_lapsedMinutes >= _sessionLength) {
                 _chime();
-                _resetMode(BREAK);
+                _resetMode(_BREAK);
+                _render();
+
+                return true;
             }
         } else {
             if (_lapsedMinutes >= _breakLength) {
                 _chime();
-                _resetMode(WORK);
+                _resetMode(_WORK);
+                _render();
+
+                return true;
             }
         }
+
+        return false;
     }
 
     function _render() {

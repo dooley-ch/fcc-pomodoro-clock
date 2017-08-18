@@ -56,7 +56,7 @@ define("app", function (require, exports) {
         if (data.mode == _clock.WORK) {
             _clockImage.attr("src", "img/groundwork256.png");
         } else {
-            _clockImage.attr("src", "img/coffe256.png");
+            _clockImage.attr("src", "img/coffee256.png");
         }
     }
 
@@ -87,8 +87,8 @@ define("app", function (require, exports) {
 
         _sessionLength--;
 
-        if (_sessionLength < 5) {
-            _sessionLength = 5;
+        if (_sessionLength < 1) {
+            _sessionLength = 1;
         }
 
         _sessionLabel.text("Session : " + _formatDigits(_sessionLength));
@@ -117,8 +117,8 @@ define("app", function (require, exports) {
 
         _breakLength--;
 
-        if (_breakLength < 5) {
-            _breakLength = 5;
+        if (_breakLength < 1) {
+            _breakLength = 1;
         }
 
         _breakLabel.text("Break : " + _formatDigits(_breakLength));
